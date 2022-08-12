@@ -3,20 +3,15 @@ import React, { useState } from 'react'
 interface SquareProps {
   children?: React.ReactNode
   position: number
-  onClick?: (i: number) => void
+  onClick?: any
   value?: string|void
 }
 
 const Square = (props: SquareProps) => {
-  const [value, setValue] = useState<string|null>(null)
-  const handleClick = () => {
-    setValue("X")
-  }
 
   return (
-    <button className="square" onClick={() => handleClick()}>
-      <>{value}</>
-      {/* <>{props.position}</> */}
+    <button className="square" onClick={props.onClick}>
+      <>{props.value}</>
     </button>
   )
 }

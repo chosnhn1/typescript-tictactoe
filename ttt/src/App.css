@@ -2,16 +2,19 @@
   text-align: center;
 }
 
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 
 .App-header {
   background-color: #282c34;
@@ -24,9 +27,11 @@
   color: white;
 }
 
+
 .App-link {
   color: #61dafb;
 }
+
 
 @keyframes App-logo-spin {
   from {
@@ -37,13 +42,22 @@
   }
 }
 
-/* .square {
-  width: 36px;
-  height: 36px;
-  margin: 4px;
-  border: 1px solid;
-  text-align: center;
-} */
+
+.game {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+
+@media (max-width: 320px) {
+  .game {
+    flex-direction: column;
+  }
+}
+
 
 .board {
   display: flex;
@@ -51,6 +65,7 @@
   align-items: center;
   min-width: 120px;
 }
+
 
 .square {
   background: #fff;

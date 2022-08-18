@@ -18,10 +18,6 @@ export default function Board(props: Props) {
 
   return (
     <div className='game'>
-      <p>
-        Board {props.squares}
-      </p>
-      
       <div className='board'>
         <div className='board-row'>
           {renderSquare(0)}

@@ -79,14 +79,11 @@ export default function Game() {
 
   return (
     <div className="game">
-      <p>Game</p>
       <div className="game-board">
         <Board squares={current.squares} handleClick={handleClick} />
       </div>
       <div className="game-info">
         {gameStatus}
-      </div>
-      <div>
         {current.squares}
         {moves}
       </div>

@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 
 interface SquareProps {
   children?: React.ReactNode
-  position: number
-  onClick?: any
-  value?: string|null
+  position?: number
+  onClick?: React.MouseEventHandler
+  value?: string | null
 }
 
 const Square = (props: SquareProps) => {

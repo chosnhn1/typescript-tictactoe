@@ -7,7 +7,6 @@ interface Props {
 }
 
 export default function Board(props: Props) {
-  
   const renderSquare = (i: number) => {
     return (<Square
       position={i}
@@ -40,9 +39,6 @@ export default function Board(props: Props) {
           {renderSquare(8)}
         </div>
       </div>
-
-
-
     </div>
   )
 }

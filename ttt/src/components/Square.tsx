@@ -4,7 +4,7 @@ interface SquareProps {
   children?: React.ReactNode
   position: number
   onClick?: any
-  value?: string|void
+  value?: string|null
 }
 
 const Square = (props: SquareProps) => {

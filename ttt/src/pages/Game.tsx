@@ -10,8 +10,10 @@ export default function Game() {
     [{squares: Array(9).fill(null)}]
   )
   const [isNextX, setIsNextX] = useState<boolean>(true)
+  const [stepNumber, setStepNumber] = useState<number>(0)
   
-  const current: unknown = history[history.length - 1]
+  const nHistory = history.slice(0, stepNumber + 1)
+  const current: {squares: Array<string | null>} = nHistory[nHistory.length - 1]
   
 
 
@@ -20,9 +22,9 @@ export default function Game() {
 
 
 
-  const [squares, setSquares] = useState<string[]>(Array(9).fill(null))
+  // const [squares, setSquares] = useState<string[]>(Array(9).fill(null))
 
-  const calcWinner = (squares: Array<string>) => {
+  const calcWinner = (squares: Array<string|null>) => {
     const lines: Array<Array<number>> = [
       [0, 1, 2],
       [3, 4, 5],
@@ -44,7 +46,8 @@ export default function Game() {
     return null
   }
 
-  const winner = calcWinner(squares)
+  
+  const winner = calcWinner(current.squares)
   let gameStatus: string
   if (winner) {
     gameStatus = "Winner: " + winner
@@ -53,27 +56,55 @@ export default function Game() {
   }
 
   const handleClick = (i: number) => {
-    const newSquares: Array<string> = squares.slice()
-    if (calcWinner(squares) || squares[i]) {
+    
+    const newSquares: Array<string|null> = current.squares.slice()
+
+    // game already ended
+    if (calcWinner(current.squares) || current.squares[i]) {
       return
     }
 
     newSquares[i] = isNextX ? "X" : "O"
+    setHistory(nHistory.concat([{
+      squares: newSquares,
+    }]))
     setIsNextX(!isNextX)
-    setSquares([...newSquares])
+    setStepNumber(nHistory.length)
   }
+
+
+  const jumpTo = (step: number) => {
+    setStepNumber(step)
+    setIsNextX((step % 2) === 0)
+  }
+  const moves = nHistory.map((step, move) => {
+    const desc = move ?
+      "Go to move #" + move :
+      "Go to Game Start"
+    
+      return (
+        <li>
+          <button onClick={() => jumpTo(move)}>{desc}</button>
+
+        </li>
+
+      )
+  })
 
 
   return (
     <div className="game">
       <p>Game</p>
       <div className="game-board">
-        <Board squares={squares} handleClick={handleClick} />
+        <Board squares={current.squares} handleClick={handleClick} />
       </div>
       <div className="game-info">
         {gameStatus}
       </div>
-
+      <div>
+        {current.squares}
+        {moves}
+      </div>
 
     </div>
   )

@@ -2,7 +2,7 @@ import React, { SetStateAction, useState } from 'react'
 import Square from './Square'
 
 interface Props {
-  squares: Array<string>
+  squares: Array<string|null>
   handleClick: (i: number) => void
 }
 
